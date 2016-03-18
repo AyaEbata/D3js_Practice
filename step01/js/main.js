@@ -14,4 +14,20 @@ d3.select('#myGraph')
   .attr('width', function(d, i) {  // dにdataSetの値が入っているので、順番に出力
       return d + 'px';
   })
-  .attr('height', '20px');
+  .attr('height', '20px')
+
+// ボタンがクリックされたときグラフのデータを更新
+d3.select('#updateButton')
+  .on('click', function() {
+
+      // 更新するグラフのデータ
+      dataSet = [20, 230, 150, 10, 20];
+
+      // 更新するグラフ
+      d3.select('#myGraph')
+        .selectAll('rect')
+        .data(dataSet)
+        .attr('width', function(d, i) {
+            return d + 'px';
+        });
+  })
