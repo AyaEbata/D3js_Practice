@@ -2,18 +2,16 @@
 var dataSet = [300, 130, 5, 60, 240];
 
 // rectタグの生成
-// データ1つめ
 d3.select('#myGraph')
+  .selectAll('rect')
+  .data(dataSet)
+  .enter()  // 自動的にdataSetの数だけrectが生成される
   .append('rect')
   .attr('x', 0)
-  .attr('y', 0)
-  .attr('width', dataSet[0])
-  .attr('height', '20px')
-
-// データ2つめ
-d3.select('#myGraph')
-  .append('rect')
-  .attr('x', 0)
-  .attr('y', 25)
-  .attr('width', dataSet[1])
-  .attr('height', '20px')
+  .attr('y', function(d, i) {  // (0, 25*i)が各rectのスタート位置
+      return i * 25;
+  })
+  .attr('width', function(d, i) {  // dにdataSetの値が入っているので、順番に出力
+      return d + 'px';
+  })
+  .attr('height', '20px');
