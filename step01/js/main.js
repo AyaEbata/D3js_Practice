@@ -1,6 +1,10 @@
+// グラフのデータ
+var dataSet = [300, 130, 5, 60, 240];
+
+// rectタグの生成
 d3.select('#myGraph')
   .append('rect')
-  .attr('x', 10)
-  .attr('y', 30)
-  .attr('width', '100px')
-  .attr('height', '80px')
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('width', dataSet[0])
+  .attr('height', '20px')
