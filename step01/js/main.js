@@ -1,2 +1,6 @@
 d3.select('#myGraph')
   .append('rect')
+  .attr('x', 10)
+  .attr('y', 30)
+  .attr('width', '100px')
+  .attr('height', '80px')
