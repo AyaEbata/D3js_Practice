@@ -22,6 +22,14 @@ d3.select('#myGraph')
       return d + 'px';
   })
 
+// グラフがクリックされたとき
+d3.select('#myGraph')
+  .selectAll('rect')
+  .on('click', function() {
+      d3.select(this)  // thisでクリックしたグラフの棒のみを指定できる
+        .style('fill', '#F8BBD0')
+  })
+
 // ボタンがクリックされたときグラフのデータを更新
 d3.select('#updateButton')
   .on('click', function() {
@@ -37,5 +45,5 @@ d3.select('#updateButton')
         .duration(1500)  // 1.5秒かけてアニメーションを実施
         .attr('width', function(d, i) {
             return d + 'px';
-        });
+        })
   })
