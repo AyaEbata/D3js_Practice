@@ -11,10 +11,12 @@ d3.select('#myGraph')
   .attr('y', function(d, i) {  // (0, 25*i)が各rectのスタート位置
       return i * 25;
   })
+  .attr('width', '0px')  // transition()でアニメーションをつけるにあたって、一旦0pxにしておく
+  .attr('height', '20px')
+  .transition()  // グラフのアニメーション
   .attr('width', function(d, i) {  // dにdataSetの値が入っているので、順番に出力
       return d + 'px';
   })
-  .attr('height', '20px')
 
 // ボタンがクリックされたときグラフのデータを更新
 d3.select('#updateButton')
