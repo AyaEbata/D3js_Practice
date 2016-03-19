@@ -7,3 +7,4 @@ d3.select('#myGraph')
       width: '100px',
       height: '80px'
   })
+  .style('fill', '#F50057')
