@@ -11,9 +11,13 @@ d3.select('#myGraph')
   .attr('y', function(d, i) {  // (0, 25*i)が各rectのスタート位置
       return i * 25;
   })
-  .attr('width', '0px')  // transition()でアニメーションをつけるにあたって、一旦0pxにしておく
+  .attr('width', '0px')    // transition()でアニメーションをつけるにあたって、一旦0pxにしておく
   .attr('height', '20px')
-  .transition()  // グラフのアニメーション
+  .transition()            // グラフのアニメーション
+  .delay(function(d, i) {  // 1つずつ順番に時間ずらしてアニメーション
+      return i * 300;      // 0.3秒ごと
+  })
+  .duration(1500)          // 1.5秒かけてアニメーションを実施
   .attr('width', function(d, i) {  // dにdataSetの値が入っているので、順番に出力
       return d + 'px';
   })
@@ -29,7 +33,8 @@ d3.select('#updateButton')
       d3.select('#myGraph')
         .selectAll('rect')
         .data(dataSet)
-        .transition()  // グラフのアニメーション
+        .transition()    // グラフのアニメーション
+        .duration(1500)  // 1.5秒かけてアニメーションを実施
         .attr('width', function(d, i) {
             return d + 'px';
         });
