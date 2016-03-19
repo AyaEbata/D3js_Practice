@@ -1,7 +1,8 @@
-var svg = d3.select('#myGraph')
+d3.select('#myGraph')
   .append('svg')
-  // .append('rect')  // rectの中にrectができてしまう
-  // .append('rect')
+  .append('rect')
+  .attr('x', '10px')
+  .attr('y', '20px')
+  .attr('width', '100px')
+  .attr('height', '80px')
 
-svg.append('rect')    // 複数rectするにはこう書く
-svg.append('rect')
