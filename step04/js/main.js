@@ -1,10 +1,13 @@
-// jsonファイルの読み込み
-d3.json('data/data.json', function(error, data) {
-    console.log(data);
-
+// txtファイルの読み込み
+d3.text('data/data.txt', function(error, text) {
     var dataSet = [];
-    for (var i = 0; i < data[0].sales.length; i++) {
-        dataSet.push(data[0].sales[i]);
+    var data = text.split('\x0a');   // 改行で区切る
+    var sales = data[0].split('/');  // '/'で区切る
+
+    console.log(sales);
+
+    for (var i = 1; i < sales.length; i++) {
+        dataSet.push(sales[i]);
     }
 
     // グラフの描画
