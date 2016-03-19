@@ -13,8 +13,8 @@ d3.csv('data/data.csv', function(error, data) {
       .data(dataSet)
       .enter()  // 自動的にdataSetの数だけrectが生成される
       .append('rect')
-      .attr('x', 0)
-      .attr('y', function(d, i) {  // (0, 25*i)が各rectのスタート位置
+      .attr('x', 10)
+      .attr('y', function(d, i) {  // (10, 25*i)が各rectのスタート位置
           return i * 25;
       })
       .attr('width', '0px')    // transition()でアニメーションをつけるにあたって、一旦0pxにしておく
@@ -27,6 +27,20 @@ d3.csv('data/data.csv', function(error, data) {
       .attr('width', function(d, i) {  // dにdataSetの値が入っているので、順番に出力
           return d + 'px';
       })
+
+    // 目盛りの設定
+    var xScale = d3.scale.linear()
+      .domain([0, 300])  // データの範囲
+      .range([0, 300])   // 目盛り全体のサイズ
+
+    d3.select('#myGraph')
+      .append('g')            // gタグを追加
+      .attr('class', 'axis')  // gタグにclassを追加
+      .attr('transform', 'translate(10, ' + ((1+dataSet.length) * 20+5) + ')')  // 目盛りの場所調整
+      .call(d3.svg.axis()
+        .scale(xScale)
+        .orient('bottom')  // 目盛りの向き
+      )
 
     // グラフがクリックされたとき
     d3.select('#myGraph')
