@@ -27,6 +27,7 @@ d3.select('#updateButton')
       d3.select('#myGraph')
         .selectAll('rect')
         .data(dataSet)
+        .transition()  // グラフのアニメーション
         .attr('width', function(d, i) {
             return d + 'px';
         });
