@@ -29,12 +29,25 @@ barElem
   .append('rect')
   .attr('class', 'bar-pink')
   .attr('width', barWidth)
-  .attr('height', function(d, i) {
-      return d;
-  })
+  .attr('height', 0)  // アニメーションのために一旦0にしておく
   .attr('x', function(d, i) {
       // 目盛りの分(offsetX + 10)だけ右にずらしとく
       return i * (barWidth + barMargin) + (offsetX + 10);
+  })
+  .attr('y', function(d, i) {
+      // アニメーションのために、一旦一番下にセット
+      return svgHeight - offsetY;
+  })
+
+  // アニメーションの処理
+  .transition()
+  .duration(1500)  // 1.5秒でアニメーションする
+  .delay(function(d, i) {
+      // 0.8秒ずつ遅れてグラフを表示
+      return i * 800;
+  })
+  .attr('height', function(d, i) {
+      return d;
   })
   .attr('y', function(d, i) {
       // ここで取得したheightを使う(使わないと逆さまになる)
@@ -47,6 +60,8 @@ barElem
   .enter()
   .append('text')
   .attr('class', 'bar-val')
+  .transition()
+  .delay(4500)
   .attr('x', function(d, i) {
       // グラフのwidthが20だから、真ん中を選択するために10を足す
       // and 目盛りの分(offsetX + 10)だけ右にずらしとく
