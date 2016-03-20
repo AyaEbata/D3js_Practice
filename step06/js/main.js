@@ -39,6 +39,16 @@ barElem
       return svgHeight - offsetY;
   })
 
+  // マウスイベント(グラフを触ったら色が変わるよに実装)
+  .on('mouseover', function() {
+      d3.select(this)
+        .style('fill', '#F8BBD0')
+  })
+  .on('mouseout', function() { 
+      d3.select(this)
+        .style('fill', '#E91E63')
+  })
+
   // アニメーションの処理
   .transition()
   .duration(1500)  // 1.5秒でアニメーションする
@@ -55,13 +65,18 @@ barElem
       return svgHeight - d - offsetY;
   })
 
-// テキストの追加
+// テキストの追加(hoverで値が見えるように実装/ちょっとやり方せこい)
+// (グラフのアニメーションに合わせてテキストも表示するタイミングを変更)
 barElem
   .enter()
   .append('text')
   .attr('class', 'bar-val')
   .transition()
-  .delay(4500)
+  .duration(1500)  // 1.5秒でアニメーションする
+  .delay(function(d, i) {
+      // 最初に1病魔ってから、0.8秒ずつ遅れてグラフを表示
+      return 1000 + i * 800;
+  })
   .attr('x', function(d, i) {
       // グラフのwidthが20だから、真ん中を選択するために10を足す
       // and 目盛りの分(offsetX + 10)だけ右にずらしとく
