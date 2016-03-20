@@ -7,12 +7,16 @@ var svgHeight = document.getElementById('myGraph').clientHeight;
 // グラフの棒の横幅
 var barWidth = 20;
 
+// グラフとグラフの間の感覚
+var barMargin = 5;
+
 // グラフのずれ調整
 var offsetX = 30;
 var offsetY = 15;
 
 // 目盛りの最大値
 var dataMax = 140;
+
 
 // グラフの描画
 var barElem = d3.select('#myGraph')
@@ -30,7 +34,7 @@ barElem
   })
   .attr('x', function(d, i) {
       // 目盛りの分(offsetX + 10)だけ右にずらしとく
-      return i * 25 + (offsetX + 10);
+      return i * (barWidth + barMargin) + (offsetX + 10);
   })
   .attr('y', function(d, i) {
       // ここで取得したheightを使う(使わないと逆さまになる)
@@ -46,12 +50,13 @@ barElem
   .attr('x', function(d, i) {
       // グラフのwidthが20だから、真ん中を選択するために10を足す
       // and 目盛りの分(offsetX + 10)だけ右にずらしとく
-      return i * 25 + barWidth/2 + (offsetX + 10);
+      return i * (barWidth + barMargin) + barWidth/2 + (offsetX + 10);
   })
-  .attr('y', svgHeight - 5 - offsetY)  // offsetYで目盛りとの場所調節
+  .attr('y', svgHeight - barMargin - offsetY)  // offsetYで目盛りとの場所調節
   .text(function(d, i) {
       return d;
   })
+
 
 // 目盛りのスケールの設定
 var yScale = d3.scale.linear()
@@ -70,11 +75,12 @@ d3.select('#myGraph')
   .attr('transform', 'translate(' + offsetX + ', ' + (svgHeight-dataMax-offsetY) + ')')
   .call(yAxis)
 
+
 // 横軸の線を描画(rectでもいけるけど縦軸に合わせてpathで作った)
 d3.select('#myGraph')
   .append('path')
   .attr('class', 'axis-x')
-  .attr('d', 'M' + offsetX + ',' + (svgHeight - offsetY) + ' L' + (offsetX + (barWidth + 5) * barElem[0].length + 5) + ',' + (svgHeight - offsetY) )
+  .attr('d', 'M' + offsetX + ',' + (svgHeight - offsetY) + ' L' + (offsetX + (barWidth + barMargin) * barElem[0].length + 5) + ',' + (svgHeight - offsetY) )
 
 // 横軸のラベルを描画
 barElem
@@ -82,7 +88,7 @@ barElem
   .append('text')
   .attr('class', 'bar-label')
   .attr('x', function(d, i) {
-      return i * 25 + barWidth/2 + (offsetX + 10);
+      return i * (barWidth + barMargin) + barWidth/2 + (offsetX + 10);
   })
   .attr('y', svgHeight - offsetY + 15)
   .text(function(d, i) {
