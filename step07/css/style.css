@@ -18,3 +18,8 @@
     fill: white;
     text-anchor: middle;
 }
+
+form {
+    position: absolute;
+    top: 310px;
+}
