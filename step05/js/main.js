@@ -1,51 +1,38 @@
-// 初期表示
-var csvFile = document.getElementById('test1').getAttribute('data-src');
+// buttonがクリックされたら
+d3.selectAll('button').on('click', function() {
 
-d3.csv('data/' + csvFile, function(error, data) {
+    // クリックされたbuttonのファイル名を取得 
+    var csvFile = this.getAttribute('data-src');
 
-    // dataSetにdata1.csvのデータを入れる
-    var dataSet = [];
-    for (var i = 0; i < data.length; i++) {
-        dataSet.push(data[i]['商品１']);
-    }
+    // そのcsvファイル名を読み込んで
+    d3.csv('data/' + csvFile, function(error, data) {
 
-    // 描画
-    d3.select('#myGraph')
-      .selectAll('rect')
-      .data(dataSet)
-      .enter()
-      .append('rect')
-      .attr('x', 0)
-      .attr('y', function(d, i) {
-          return i * 25;
-      })
-      .attr('width', function(d, i) {
-          return d + 'px';
-      })
-      .attr('height', '20px')
-})
+        // dataSetにファイルのデータをセット
+        var dataSet = [];
+        for (var i = 0; i < data.length; i++) {
+            dataSet.push(data[i]['商品１']);
+        }
 
-// csvファイル名が書かれたボタンが押されたとき
-d3.selectAll('button')
-  .on('click', function() {
+        // データを更新させたい場合は、分けて書く
+        var barElem = d3.select('#myGraph')
+          .selectAll('rect')
+          .data(dataSet)
 
-      // 押されたファイル名を取得
-      csvFile = this.getAttribute('data-src');
-      d3.csv('data/' + csvFile, function(error, data) {
+        // データ数によってrectを追加する処理
+        barElem
+          .enter()      
+          .append('rect')
+          .attr('x', 0)
+          .attr('y', function(d, i) {
+              return i * 25;
+          })
+          .attr('height', '20px')
 
-          // 押されたファイルのデータをdataSetに入れる
-          var dataSet = [];
-          for (var i = 0; i < data.length; i++) {
-              dataSet.push(data[i]['商品１']);
-          }
-
-          // グラフの棒の長さのみ更新（だから、グラフの棒の数は初期表示と一緒）
-          d3.select('#myGraph')
-            .selectAll('rect')
-            .data(dataSet)
-            .attr('width', function(d, i) {
+        // データの値によって横幅を変更する処理
+        barElem
+          .attr('width', function(d, i) {
                 return d + 'px';
-            })
-      })
-  })
+          })
+    })
+})
   
