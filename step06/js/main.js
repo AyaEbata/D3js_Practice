@@ -1,5 +1,6 @@
 // 今回使うデータ
 var dataSet = [54, 134, 60, 98, 43];
+var labelList = ['A', 'B', 'C', 'D', 'E'];
 
 // svgのheightを取得
 var svgHeight = document.getElementById('myGraph').clientHeight;
@@ -72,7 +73,6 @@ barElem
   .append('text')
   .attr('class', 'bar-val')
   .transition()
-  .duration(1500)  // 1.5秒でアニメーションする
   .delay(function(d, i) {
       // 最初に1病魔ってから、0.8秒ずつ遅れてグラフを表示
       return 1000 + i * 800;
@@ -122,6 +122,5 @@ barElem
   })
   .attr('y', svgHeight - offsetY + 15)
   .text(function(d, i) {
-      var labelList = ['A', 'B', 'C', 'D', 'E'];
       return labelList[i];
   })
