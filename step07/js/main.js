@@ -7,7 +7,7 @@ var pie = d3.layout.pie()
 
 // 外形と内径を設定
 var arc = d3.svg.arc()
-  .innerRadius(0)
+  .innerRadius(40)
   .outerRadius(100)
 
 // グラフの描画
@@ -42,3 +42,10 @@ pieElem
           return arc(interpolate(t));
       }
   })
+
+// テキストの表示
+var textElem = d3.select('#myGraph')
+  .append('text')
+  .attr('class', 'sum-label')
+  .attr('transform', 'translate(110, ' + (105 + 5) + ')')
+  .text('SUM ' + d3.sum(dataSet))
