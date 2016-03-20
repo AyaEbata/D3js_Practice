@@ -1,0 +1,13 @@
+#myGraph {
+    height: 150px;
+}
+
+.bar-pink {
+    fill: #E91E63;
+}
+
+.bar-label {
+    font-size: 9px;
+    fill: white;
+    text-anchor: middle;
+}
