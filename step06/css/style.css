@@ -1,5 +1,5 @@
 #myGraph {
-    height: 150px;
+    height: 160px;
 }
 
 .bar-pink {
@@ -10,4 +10,14 @@
     font-size: 9px;
     fill: white;
     text-anchor: middle;
+}
+
+.axis text {
+    font-size: 9px;
+    fill: #3F51B5;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #9FA8DA;
 }
