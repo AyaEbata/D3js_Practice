@@ -1,0 +1,9 @@
+#myGraph {
+    height: 300px;
+}
+
+.pie-pink {
+    fill: #E91E63;
+    stroke: #F48FB1;
+    stroke-width: 4px;
+}
