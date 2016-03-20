@@ -28,10 +28,11 @@ pieElem
 
   // アニメーション
   .transition()
-  .duration(1000)
+  .duration(700)
   .delay(function(d, i) {
-      return i * 700;
+      return i * 640;
   })
+  .ease('sin-out')  // アニメーションの波形を変更
   .attrTween('d', function(d, i) {
       var interpolate = d3.interpolate(
           { startAngle: d.startAngle, endAngle: d.startAngle },  // アニメーション始まる前の位置
