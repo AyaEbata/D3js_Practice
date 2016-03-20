@@ -1,5 +1,6 @@
 // 使用するデータ
-var dataSet = [25, 20, 45, 10];
+var dataSet = [45, 25, 15, 10, 5];
+var colorList = ['#FF4081', '#536DFE', '#E040FB', '#8BC34A', '#FFC107'];
 
 // 円グラフレイアウト
 var pie = d3.layout.pie()
@@ -18,6 +19,9 @@ var pieElem = d3.select('#myGraph')
 pieElem
   .enter()
   .append('path')
-  .attr('class', 'pie-pink')
+  .attr('class', 'pie')
   .attr('d', arc)
   .attr('transform', 'translate(110, 105)')
+  .style('fill', function(d, i) {
+      return colorList[i];
+  })
