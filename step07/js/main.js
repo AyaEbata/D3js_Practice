@@ -20,8 +20,24 @@ pieElem
   .enter()
   .append('path')
   .attr('class', 'pie')
-  .attr('d', arc)
+  // .attr('d', arc)  // アニメーションをつける時は、ここで指定しなくなる
   .attr('transform', 'translate(110, 105)')
   .style('fill', function(d, i) {
       return colorList[i];
+  })
+
+  // アニメーション
+  .transition()
+  .duration(1000)
+  .delay(function(d, i) {
+      return i * 700;
+  })
+  .attrTween('d', function(d, i) {
+      var interpolate = d3.interpolate(
+          { startAngle: d.startAngle, endAngle: d.startAngle },  // アニメーション始まる前の位置
+          { startAngle: d.startAngle, endAngle: d.endAngle }     // アニメーション終わってからの位置
+      )
+      return function(t) {  // t = 時間
+          return arc(interpolate(t));
+      }
   })
