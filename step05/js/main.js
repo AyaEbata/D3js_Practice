@@ -33,6 +33,11 @@ d3.selectAll('button').on('click', function() {
           .attr('width', function(d, i) {
                 return d + 'px';
           })
+
+        // データ数の変更によっていらなくなったrectを削除する処理
+        barElem
+          .exit()    // 対応するデータがなくなったrectを
+          .remove()  // 削除する
     })
 })
   
