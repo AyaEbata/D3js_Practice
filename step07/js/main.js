@@ -12,16 +12,17 @@ var arc = d3.svg.arc()
 
 // グラフの描画
 var pieElem = d3.select('#myGraph')
-  .selectAll('path')
+  .selectAll('g')
   .data(pie(dataSet))
+  .enter()
+  .append('g')
+  .attr('transform', 'translate(110, 105)')
 
 // データの追加
 pieElem
-  .enter()
   .append('path')
   .attr('class', 'pie')
   // .attr('d', arc)  // アニメーションをつける時は、ここで指定しなくなる
-  .attr('transform', 'translate(110, 105)')
   .style('fill', function(d, i) {
       return colorList[i];
   })
@@ -43,7 +44,19 @@ pieElem
       }
   })
 
-// テキストの表示
+// 各データの値を円弧内に表示
+pieElem
+  .append('text')
+  .attr('class', 'pie-val')
+  .attr('transform', function(d, i) {
+      return 'translate(' + arc.centroid(d) + ')';
+  })
+  .text(function(d, i) {
+      console.log(d);  // (中身みてみ)
+      return d.value;
+  })
+
+// テキストの表示(中央に合計値)
 var textElem = d3.select('#myGraph')
   .append('text')
   .attr('class', 'sum-label')
