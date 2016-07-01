@@ -1,0 +1,13 @@
+#myGraph {
+    width: 320px;
+    height: 240px;
+    border: 1px solid #9E9E9E;
+}
+
+rect {
+    fill: #F50057;
+}
+
+.bar_color {
+    fill: #9C27B0;
+}
