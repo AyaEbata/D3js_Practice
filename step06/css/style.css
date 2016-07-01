@@ -1,0 +1,33 @@
+#myGraph {
+    height: 160px;
+}
+
+.bar-pink {
+    fill: #E91E63;
+}
+
+.bar-val {
+    font-size: 9px;
+    fill: #E91E63;
+    text-anchor: middle;
+}
+
+.axis-x {
+    stroke: #9FA8DA;
+}
+
+.axis-y text {
+    font-size: 9px;
+    fill: #3F51B5;
+}
+
+.axis-y path, .axis-y line {
+    fill: none;
+    stroke: #9FA8DA;
+}
+
+.bar-label {
+    font-size: 9px;
+    fill: #3F51B5;
+    text-anchor: middle;
+}
