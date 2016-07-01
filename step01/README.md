@@ -1,6 +1,3 @@
-# D3js_Practice
-D3.jsの練習！
-
 ## step01
 横棒グラフの作成
 
