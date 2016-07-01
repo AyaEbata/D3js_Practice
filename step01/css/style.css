@@ -1,0 +1,18 @@
+/* ----- グラフのスタイル ----- */
+#myGraph {
+    fill: rgb(252, 228, 236);  /* 塗りつぶす色 */
+    stroke: rgb(233, 30, 99);  /* 枠色 */
+    stroke-width: 1px;         /* 枠の太さ */
+    width: 330px;
+}
+
+/* ----- 目盛りのスタイル ----- */
+.axis text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: gray;
+}
