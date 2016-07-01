@@ -1,0 +1,18 @@
+svg {
+    width: 640px;
+    height: 480px;
+    border: 1px solid #9E9E9E;
+}
+
+rect {
+    fill: #F50057;
+}
+
+circle {
+    opacity: 0.9;
+    fill: #3D5AFE;
+}
+
+g {
+    opacity: 0.3;
+}
