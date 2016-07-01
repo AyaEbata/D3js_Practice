@@ -1,0 +1,9 @@
+#myGraph {
+    width: 300px;
+    height: 200px;
+}
+
+.line {
+    fill: none;
+    stroke: black;
+}
