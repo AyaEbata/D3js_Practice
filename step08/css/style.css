@@ -5,10 +5,22 @@
 
 .line {
     fill: none;
-    stroke: black;
+    stroke-width: 4px;
 }
 
 .axis path, .axis line {
     fill: none;
     stroke: black;
+}
+
+.blue-line {
+    stroke: #3E50B4;
+}
+
+.pink-line {
+    stroke: #FF3F80;
+}
+
+.yellow-line {
+    stroke: #FFEB3B;
 }
